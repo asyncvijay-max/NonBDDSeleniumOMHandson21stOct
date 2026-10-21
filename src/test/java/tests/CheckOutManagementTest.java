@@ -1,7 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import com.sun.jna.platform.win32.LMAccess;
 import domain.BillingAddress;
 import domain.User;
 import org.testng.annotations.Test;
@@ -9,9 +8,8 @@ import pages.*;
 import utils.JacksonUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 
-public class CheckOutManagement extends BaseTest {
+public class CheckOutManagementTest extends BaseTest {
 
     @Test
     public void guestNoLoginDuringCheckOutE2E() throws IOException {

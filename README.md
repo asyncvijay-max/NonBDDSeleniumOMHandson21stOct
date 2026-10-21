@@ -32,6 +32,24 @@ Steps high level:
     Navigates to Checkout Page,clicks Login,enter user credentials ,adds Billing Address
     Finally goes to Order confirmation Page
 -------------------------------------------------------
+RUN tests using maven command line
+
+IMP
+1)
+before running make sure your Test Java Class under test package, 
+has the word Test at the end eg: AccountManagementTest
+without Test keyword, mvn test will not pick up your Java Test
+
+2) Now run -> mvn clean test   (tests are executed serially one by one,not in parallel by default)
+( at this moment, we donot need Maven sure fireplugin explicitly mentioned in pom.xml)
+We will add this Maven sure fire plugin later ,when we drive execution using testng.xml
+   You don't necessarily need to declare Surefire explicitly.
+
+However, if you want to run a particular TestNG suite file, explicitly configuring Surefire is useful.
+
+
+
+----------------------------------------------------
 
 
 
