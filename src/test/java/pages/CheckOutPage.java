@@ -169,3 +169,49 @@ public class CheckOutPage extends BasePage {
     }
 
 }
+
+
+/**
+ * if in future,you need to add Billing Country as a loctor,there is a catch for FF
+ * eg: use locator as xpath ->  //select[@name='billing_country']/option[text()='India']
+ private void enterCountry(String countryName)
+ {
+ WebElement selectDropDown = driver.findElement(By.cssSelector("#billing_country"));
+ Select select = new Select(selectDropDown);
+ select.selectByVisibleText(countryName);
+
+ }
+ There is a good chance of automation failing in firefox (not chrome)
+ The reason, in firefox above code wont work since the country India is staying out of view port in FF (known bug)
+ The normal Select code wont work in FF but works in chrome
+
+ Alternative code  for FF:
+ 1) first find the locator of country dropdown
+ By countryDropDown = By.cssSelector('#select2-billing_country-container')
+
+ 2)Then click using explicit wait
+ wait.until(ExpectedConditions.elementTobeClickable(countrDropdown)).click()
+
+ 3)Find the element that you are trying to select from dropdown,eg India
+
+ By countyToPickFromList = By.xpath(//select[@name='billing_country']/option[text()='India']);
+
+ 4) Use Implicit wait to find the element
+
+ WebElement e = wait.until(ExpectedConditions.elementTobeClickable(countyToPickFromList)
+
+
+ 5)Use JavaScript Executor to scroll to the view and then click
+
+((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",e);
+
+ 6)Then click the element e
+
+ e.click();
+
+
+
+
+
+
+ */
