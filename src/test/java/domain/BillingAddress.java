@@ -6,20 +6,23 @@ public class BillingAddress {
     private String lastName;
     private String billingStreet;
     private String bCity;
+    private String bState;
     private String zipCode;
     private String email;
 
     public BillingAddress() {
     }
 
-    public BillingAddress(String firstName, String lastName, String billingStreet, String bCity, String zipCode, String email) {
+    public BillingAddress(String firstName, String lastName, String billingStreet, String bCity, String bState, String zipCode, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.billingStreet = billingStreet;
         this.bCity = bCity;
+        this.bState = bState;
         this.zipCode = zipCode;
         this.email = email;
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -51,6 +54,14 @@ public class BillingAddress {
 
     public void setbCity(String bCity) {
         this.bCity = bCity;
+    }
+
+    public String getbState() {
+        return bState;
+    }
+
+    public void setbState(String bState) {
+        this.bState = bState;
     }
 
     public String getZipCode() {

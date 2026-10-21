@@ -4,6 +4,10 @@ https://github.com/asyncvijay-max/NonBDDSeleniumOMHandson21stOct.git
 website under test:
 https://askomdch.com/
 
+Registered user:
+testpeterpan
+testpeterpan@testing.com
+password123
 -------------------------------------------------------
 
 Test cases planning to automate:

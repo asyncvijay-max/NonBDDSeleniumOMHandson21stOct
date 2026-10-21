@@ -1,7 +1,9 @@
 package tests;
 
 import base.BaseTest;
+import com.sun.jna.platform.win32.LMAccess;
 import domain.BillingAddress;
+import domain.User;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.JacksonUtils;
@@ -11,11 +13,10 @@ import java.io.InputStream;
 
 public class CheckOutManagement extends BaseTest {
 
-
     @Test
     public void guestNoLoginDuringCheckOutE2E() throws IOException {
 
-   //Test Case - Guest checkout using Direct Bank Transfer,no Login during checkout flow
+   //Test Case - As a Guest ,add product to the cart,checkout,no login during checkout, submit the order
 
 
      //Test Data
@@ -74,12 +75,63 @@ public class CheckOutManagement extends BaseTest {
        OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
         //Need to assert the order confirmation text ,later
 
+    }
+
+
+    @Test
+    public void LoginDuringCheckOutE2E() throws IOException {
+
+        //Test Case - As a guest, add product to the cart,click Login during checkout and submit order flow
+
+
+        //Test Data
+        // Option 1 - create billinAddress object and then set values and pass as args
+        //BillingAddress billingAddress = new BillingAddress();
+//        billingAddress.setFirstName("Charlie");
+//        billingAddress.setLastName("Chaps");
+//        billingAddress.setBillingStreet("1234 Collin St");
+//        billingAddress.setbCity("New York");
+//        billingAddress.setZipCode("10001");
+//        billingAddress.setEmail("chapscharlie@testing.com");
+
+
+        //Option 2 (Best one) - create billingAddress.json (keys in it should match POJO class variable names)
+        User user= JacksonUtils.deSerializeJson("registeredUser.json", User.class);
+        BillingAddress billingAddress = JacksonUtils.deSerializeJson("myBillingAddress.json",BillingAddress.class);
 
 
 
+        HomePage homePage = new HomePage(driver);
+        homePage.loadPage("/");
+        homePage.navigateToStorePage();
 
+        StorePage storePage = new StorePage(driver);
+        storePage.searchTheProductInTheSearchBox("blue");
+        storePage.clickOnTheSearchBtn();
+        //Need to assert the search result text later
+
+        storePage.addProductToTheCart("Blue Shoes");
+        storePage.clickOnViewCartLink();
+
+        CartPage cartPage = new CartPage(driver);
+        //Need to assert the product Name,product Qty in the Cart later
+        cartPage.clickOnProceedToCheckOutBtn();
+
+        CheckOutPage checkOutPage = new CheckOutPage(driver);
+
+        checkOutPage.clickOnLoginLinkCheckOut();
+        checkOutPage.enterLoginCredentialsBeforeCheckOut(user);
+
+       checkOutPage.enterUserDetails(billingAddress);
+
+        checkOutPage.placeOrder();
+
+        OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
+        //Need to assert the order confirmation text ,later
 
 
 
     }
+
+
 }
