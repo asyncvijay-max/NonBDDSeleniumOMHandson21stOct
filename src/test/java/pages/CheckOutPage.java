@@ -123,9 +123,16 @@ public class CheckOutPage extends BasePage {
 
     private void enterState(String stateName)
     {
-//        WebElement selectDropDown = driver.findElement(By.cssSelector("#billing_state"));
-//        Select select = new Select(selectDropDown);
-//        select.selectByVisibleText(stateName);
+        /** This works only in CHROME,not FF
+         * WebElement selectDropDown = driver.findElement(By.cssSelector("#billing_state"));
+         *        Select select = new Select(selectDropDown);
+         *       select.selectByVisibleText(stateName);
+         */
+//
+
+        //BELOW works in FF and Chrome
+        //Select doesnot work
+        // Use Java Script Executor to wait for the element to stay within view port and then click
 
          wait.until(ExpectedConditions.elementToBeClickable(billingState)).click();
 
@@ -138,8 +145,6 @@ public class CheckOutPage extends BasePage {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",e);
 
         e.click();
-
-
 
 
 
