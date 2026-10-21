@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import domain.BillingAddress;
 import org.testng.annotations.Test;
 import pages.*;
 
@@ -29,20 +30,31 @@ public class CheckOutManagement extends BaseTest {
     //Need to assert the product Name,product Qty in the Cart later
     cartPage.clickOnProceedToCheckOutBtn();
 
-    CheckOutPage checkOutPage = new CheckOutPage(driver);
-    String fname = "Kiran";
-    String lastname ="John";
-    String billstreet = "123 Oven street";
-    String bcity = "New York";
-    String zipcode ="10001";
-    String email = "joe.kiran@testing.com";
+     CheckOutPage checkOutPage = new CheckOutPage(driver);
+//    String fname = "Kiran";
+//    String lastname ="John";
+//    String billstreet = "123 Oven street";
+//    String bcity = "New York";
+//    String zipcode ="10001";
+//    String email = "joe.kiran@testing.com";
 
 
-    checkOutPage.enterUserDetails(fname,lastname,billstreet,bcity,zipcode,email);
-    checkOutPage.placeOrder();
+    //checkOutPage.enterUserDetails(fname,lastname,billstreet,bcity,zipcode,email);
 
-    OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
-    //Need to assert the order confirmation text ,later
+        BillingAddress billingAddress = new BillingAddress();
+        billingAddress.setFirstName("Charlie");
+        billingAddress.setLastName("Chaps");
+        billingAddress.setBillingStreet("1234 Collin St");
+        billingAddress.setbCity("New York");
+        billingAddress.setZipCode("10001");
+        billingAddress.setEmail("chapscharlie@testing.com");
+
+        checkOutPage.enterUserDetails(billingAddress);
+
+        checkOutPage.placeOrder();
+
+       OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
+        //Need to assert the order confirmation text ,later
 
 
 

@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import domain.BillingAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -60,14 +61,26 @@ public class CheckOutPage extends BasePage {
         driver.findElement(emailTxt).sendKeys(email);
     }
 
-    public void enterUserDetails(String fname,String lname,String bStreet,String city,String zipcode,String email)
+    // Pass String as args, ok for dry runs, Always use POJOs long term.
+//    public void enterUserDetails(String fname,String lname,String bStreet,String city,String zipcode,String email)
+//    {
+//        enterFirstName(fname);
+//        enterLastName(lname);
+//        enterbillingStreet(bStreet);
+//        enterbillingCity(city);
+//        enterPostalCode(zipcode);
+//        enterEmail(email);
+//    }
+
+    // Pass POJO as argument
+    public void enterUserDetails(BillingAddress billingAddress)
     {
-        enterFirstName(fname);
-        enterLastName(lname);
-        enterbillingStreet(bStreet);
-        enterbillingCity(city);
-        enterPostalCode(zipcode);
-        enterEmail(email);
+        enterFirstName(billingAddress.getFirstName());
+        enterLastName(billingAddress.getLastName());
+        enterbillingStreet(billingAddress.getBillingStreet());
+        enterbillingCity(billingAddress.getbCity());
+        enterPostalCode(billingAddress.getZipCode());
+        enterEmail(billingAddress.getEmail());
     }
 
     public void placeOrder()
