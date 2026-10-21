@@ -12,7 +12,7 @@ import java.io.IOException;
 public class CheckOutManagementTest extends BaseTest {
 
     @Test
-    public void guestNoLoginDuringCheckOutE2E() throws IOException {
+    public void guestNoLoginDuringCheckOutE2E() throws IOException, InterruptedException {
 
    //Test Case - As a Guest ,add product to the cart,checkout,no login during checkout, submit the order
 
@@ -68,6 +68,13 @@ public class CheckOutManagementTest extends BaseTest {
 
        checkOutPage.enterUserDetails(billingAddress);
 
+        //static wait for the time being,NOT RECOMMENDED ,this issue arise in FF
+       Thread.sleep(2000);
+        // Solution
+        //There are 2 overlay element blocking the click
+        //We need to identify the overlay using debugger F8 ad then getting elem
+        //Use explicit wait for the overlay to disappear
+        //Then click the checkout place order button
         checkOutPage.placeOrder();
 
        OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);

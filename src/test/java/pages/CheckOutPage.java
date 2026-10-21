@@ -4,6 +4,7 @@ import base.BasePage;
 import domain.BillingAddress;
 import domain.User;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,6 +35,8 @@ public class CheckOutPage extends BasePage {
     private  final By billingStreetTxt =  By.id("billing_address_1");
 
     private  final By billingCityTxt =  By.id("billing_city");
+
+    private final By billingState = By.cssSelector("#select2-billing_state-container");
 
     private  final By postCodeTxt =  By.id("billing_postcode");
 
@@ -120,9 +123,25 @@ public class CheckOutPage extends BasePage {
 
     private void enterState(String stateName)
     {
-        WebElement selectDropDown = driver.findElement(By.cssSelector("#billing_state"));
-        Select select = new Select(selectDropDown);
-        select.selectByVisibleText(stateName);
+//        WebElement selectDropDown = driver.findElement(By.cssSelector("#billing_state"));
+//        Select select = new Select(selectDropDown);
+//        select.selectByVisibleText(stateName);
+
+         wait.until(ExpectedConditions.elementToBeClickable(billingState)).click();
+
+       // By selectedDropDown1 = By.xpath("//select[@name='billing_state']/option[text()='"+stateName+"']");
+
+        By selectedDropDown = By.xpath("//ul[@id='select2-billing_state-results']//li[normalize-space()='"+stateName+"']");
+
+        WebElement e = wait.until(ExpectedConditions.elementToBeClickable(selectedDropDown));
+
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",e);
+
+        e.click();
+
+
+
+
 
     }
 
