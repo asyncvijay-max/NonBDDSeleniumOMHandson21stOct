@@ -4,15 +4,41 @@ import base.BaseTest;
 import domain.BillingAddress;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.JacksonUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class CheckOutManagement extends BaseTest {
 
 
     @Test
-    public void guestNoLoginDuringCheckOutE2E()
-    {
+    public void guestNoLoginDuringCheckOutE2E() throws IOException {
 
    //Test Case - Guest checkout using Direct Bank Transfer,no Login during checkout flow
+
+
+     //Test Data
+        // Option 1 - create billinAddress object and then set values and pass as args
+        //BillingAddress billingAddress = new BillingAddress();
+//        billingAddress.setFirstName("Charlie");
+//        billingAddress.setLastName("Chaps");
+//        billingAddress.setBillingStreet("1234 Collin St");
+//        billingAddress.setbCity("New York");
+//        billingAddress.setZipCode("10001");
+//        billingAddress.setEmail("chapscharlie@testing.com");
+
+
+       //Option 2 (Best one) - create billingAddress.json (keys in it should match POJO class variable names)
+       //Create a JacksonUtil class which uses Object Mapper to convert json to Java POJOs
+
+//        InputStream is = getClass().getClassLoader().getResourceAsStream("myBillingAddress.json");
+//        billingAddress = JacksonUtils.deSerializeJson(is,billingAddress);
+
+        //Just pick which ever json data by passing as arg, you get a Java POJO
+        //Complete de serialization taken place in JackSon Utils
+        BillingAddress billingAddress = JacksonUtils.deSerializeJson("myBillingAddress.json",BillingAddress.class);
+
 
     HomePage homePage = new HomePage(driver);
     homePage.loadPage("/");
@@ -41,15 +67,7 @@ public class CheckOutManagement extends BaseTest {
 
     //checkOutPage.enterUserDetails(fname,lastname,billstreet,bcity,zipcode,email);
 
-        BillingAddress billingAddress = new BillingAddress();
-        billingAddress.setFirstName("Charlie");
-        billingAddress.setLastName("Chaps");
-        billingAddress.setBillingStreet("1234 Collin St");
-        billingAddress.setbCity("New York");
-        billingAddress.setZipCode("10001");
-        billingAddress.setEmail("chapscharlie@testing.com");
-
-        checkOutPage.enterUserDetails(billingAddress);
+       checkOutPage.enterUserDetails(billingAddress);
 
         checkOutPage.placeOrder();
 
