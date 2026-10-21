@@ -2,9 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.testng.annotations.Test;
-import pages.CartPage;
-import pages.HomePage;
-import pages.StorePage;
+import pages.*;
 
 public class CheckOutManagement extends BaseTest {
 
@@ -28,8 +26,25 @@ public class CheckOutManagement extends BaseTest {
     storePage.clickOnViewCartLink();
 
     CartPage cartPage = new CartPage(driver);
-    //Need to assert product Name,product Qty later
+    //Need to assert the product Name,product Qty in the Cart later
     cartPage.clickOnProceedToCheckOutBtn();
+
+    CheckOutPage checkOutPage = new CheckOutPage(driver);
+    String fname = "Kiran";
+    String lastname ="John";
+    String billstreet = "123 Oven street";
+    String bcity = "New York";
+    String zipcode ="10001";
+    String email = "joe.kiran@testing.com";
+
+
+    checkOutPage.enterUserDetails(fname,lastname,billstreet,bcity,zipcode,email);
+    checkOutPage.placeOrder();
+
+    OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage(driver);
+    //Need to assert the order confirmation text ,later
+
+
 
 
 

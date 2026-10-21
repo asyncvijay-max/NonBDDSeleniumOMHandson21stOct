@@ -13,14 +13,14 @@ public class CartPage extends BasePage {
     //LOCATORS:
 
     //1. Product Name - extract the text for assertion during the test
-    By productName = By.cssSelector("td[class='product-name'] > a");
+    private final By productName = By.cssSelector("td[class='product-name'] > a");
 
     //2.Product Qty - extract the text for assertion during the test
-    By productQty = By.cssSelector("td[class='product-quantity']  input[title=Qty]");
+    private final By productQty = By.cssSelector("td[class='product-quantity']  input[title=Qty]");
 
 
     //proceedToCheckOut button
-    By proceedToCheckOutBtn= By.cssSelector(".checkout-button");
+    private final By proceedToCheckOutBtn= By.cssSelector(".checkout-button");
 
     //ACTIONS:
 
@@ -42,7 +42,7 @@ public class CartPage extends BasePage {
         //use for dry run since we use implicit option during dry run,later switch to implicit one
         driver.findElement(proceedToCheckOutBtn).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckOutBtn)).click();
+        //wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckOutBtn)).click();
     }
 
 

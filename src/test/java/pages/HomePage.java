@@ -14,7 +14,7 @@ public class HomePage extends BasePage {
     //locators
 
     //This is the store Menu <a> Link on the Top Menu Bar
-    By storeMenuLink = By.cssSelector("li#menu-item-1227 > a[href='https://askomdch.com/store/']");
+    private final By storeMenuLink = By.cssSelector("li#menu-item-1227 > a[href='https://askomdch.com/store/']");
 
        //actions
     public void navigateToHomePage()

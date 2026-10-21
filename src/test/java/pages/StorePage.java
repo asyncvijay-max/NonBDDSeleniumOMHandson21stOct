@@ -14,16 +14,16 @@ public class StorePage extends BasePage {
 //LOCATORS:
 
     //This is the search input text box
-    By searchInputBox = By.cssSelector("input[type=search][class=search-field]");
+    private final By searchInputBox = By.cssSelector("input[type=search][class=search-field]");
 
     //This is the button which is clicked post entering search item
-    By searchButton = By.cssSelector("button[value=Search]");
+    private final By searchButton = By.cssSelector("button[value=Search]");
 
     //The message which is shown post searching the item eg:->  Search results: “blue”,we will extract the text for assertion
-    By searchResultMessage = By.cssSelector("h1.woocommerce-products-header__title.page-title");
+    private final By searchResultMessage = By.cssSelector("h1.woocommerce-products-header__title.page-title");
 
     //View cart Link
-    By viewCartLink = By.cssSelector("[title='View cart']");
+    private final By viewCartLink = By.cssSelector("[title='View cart']");
 
 
 
